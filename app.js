@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const port = 3000;
 const client = require("@mailchimp/mailchimp_marketing");
 
 client.setConfig({
@@ -53,6 +52,6 @@ app.post("/failure", (req, res) => {
   res.redirect("/");
 });
 
-app.listen(port || process.env.PORT, () => {
-  console.log(`Server on Port: ${port} is running`);
+app.listen(3000 || process.env.PORT, () => {
+  console.log(`Server is running`);
 });
