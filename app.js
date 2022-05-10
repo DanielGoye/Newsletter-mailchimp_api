@@ -22,18 +22,21 @@ app.post("/", (req, res) => {
   const emailAddress = req.body.emailAddress;
 
   const run = async () => {
-    const response = await client.lists.batchListMembers("4561a68191", {
-      members: [
-        {
-          email_address: emailAddress,
-          status: "subscribed",
-          merge_fields: {
-            FNAME: firstName,
-            LNAME: lastName,
+    const response = await client.lists.batchListMembers(
+      process.env.AUDIENCEID,
+      {
+        members: [
+          {
+            email_address: emailAddress,
+            status: "subscribed",
+            merge_fields: {
+              FNAME: firstName,
+              LNAME: lastName,
+            },
           },
-        },
-      ],
-    });
+        ],
+      }
+    );
     if (response.errors.length > 0) {
       console.log(response.errors[0].error);
       res.sendFile(`${__dirname}/failure.html`);
