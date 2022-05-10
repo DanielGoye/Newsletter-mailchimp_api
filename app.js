@@ -1,10 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const client = require("@mailchimp/mailchimp_marketing");
 
 client.setConfig({
-  apiKey: `cfc848c5ede827644b039c66a953dce9-us5`,
-  server: `us5`,
+  apiKey: process.env.APIKEY,
+  server: process.env.SERVER,
 });
 
 app.use(express.urlencoded({ extended: true }));
